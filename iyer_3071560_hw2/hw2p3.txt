@@ -1,0 +1,23 @@
+a. R_1 = 470kOhm, R_2 = 100 kOhm
+	V_out = V_in - 470 kOhm * (V_in/570 kOhm)
+	V_in | V_out
+	------------
+	1.1  | 0.193
+	2.2  | 0.396
+	3.3  | 0.579
+
+b. 
+	V_in | V_out
+	------------
+	1.1  | 0.192
+	2.2  | 0.380
+	3.3  | 0.566
+
+c. The function with all sources of error would probably look like:
+	V_out = (V_in +- dV) - (470e3 +- dR1) * ((V_in +- dV) / ((470e3 +- dR1) + (1 / (1/(100e3 +- dR2) + (1/150e6))))
+with a 0.05% gain error on the measurement of V_out by the ADS with a 2mV LSB.
+The 2mV represents a 0.3% error.
+The inclusion of the ADS impedance only contributes a 0.055% difference (determined numerically).
+As determined by a multimeter with 0.1% error, the actual MCP outputs are 1.095 V, 2.193 V, and 3.286 V, a 4% full scale deviation from expected values.
+The multimeter measured the resistors to be 96.8 kOhms and 466.8 kOhms, with a 0.5% uncertainty. This represents a 3.2% error and a 0.6% error, respectively.
+The greatest source of error is the MCP output because it is the greatest individual error and is added directly to the output.

@@ -1,0 +1,8 @@
+a. You can apply at most 4V.
+b. The minimum applicable voltage is GND-0.3V.
+c. Because adcdemo uses the FST 4.096V, the differential input impedance is 15MOhm.
+d. You can draw as much as 25 mA, so it’s not the end of the world if you
+	exceed 1mA.  I found this in section 5.1 on page 19.
+e. The maximum setting of the MCP in this case is 3.3V, according to the 
+	maximum voltage in section 5.1.
+	V=IR so the resistive load is V/I = 3.3/1mA = 3.3 * 10^3 = 3.3 kOhms.

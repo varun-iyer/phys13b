@@ -1,0 +1,2 @@
+
+c. V_{out} = 3.119V, 0.159V less than the 3.278V produced by the ADC, as measured by a multimeter.
