@@ -17,11 +17,11 @@ while True:
         v = float(v)
     except:
         print("voltage must be numerical")
-        cotinue
+        continue
     if v > VDD or v < 0:
         print("voltage out of range")
         continue
-    setV(dac, d)
+    setV(dac, v)
     sleep(0.1)
-    print("op-amp pin1: {}".format(adc.readADCDifferential01(4096, 128) * 0.001)
+    print("op-amp pin1: {}".format(adc.readADCDifferential01(4096, 128) * 0.001))
     print("op-amp vout: {}".format(adc.readADCDifferential23(4096, 128) * 0.001))

@@ -7,3 +7,4 @@ a. The op amp voltage is very close to if not the same as the DAC output.
 | 2.1900  | 1.8900 | 0.3000 | 0.0300 |
 | 3.2660  | 2.0000 | 1.2660 | 0.1266 |
 +---------+--------+--------+--------+
+d. I can see the faintest glimmer of light on the red LED at 1.56V, with the op-amp pin1 at 1.592 and the op-amp vout at 1.59. On the blue LED, I see it at 2.44V, with pin1 at 2.43 and vout at 2.428

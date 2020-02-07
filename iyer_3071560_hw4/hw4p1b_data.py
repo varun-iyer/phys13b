@@ -7,6 +7,7 @@ from time import sleep
 import numpy as np
 from dacdemo import setV, mcp4725
 from Adafruit import ADS1x15
+import sys
 
 dacv = np.arange(0, 3.4, 0.1)
 pin1 = np.zeros(dacv.shape[0])
@@ -22,4 +23,4 @@ for i, d in enumerate(dacv):
 	vout[i] = adc.readADCDifferential23(4096, 128) * 0.001
 
 dpv = np.vstack((dacv, pin1, vout))
-np.save("hw4p1b.npy", dpv)
+np.save(sys.argv[1], dpv)

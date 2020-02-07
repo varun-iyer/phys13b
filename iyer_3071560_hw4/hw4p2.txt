@@ -1,0 +1,4 @@
+The DAC updates the voltage every 1.08ms.
+b. I saw the delay actually go down to 480 microseconds, but if there were many more processes running you would probably expect the rate of this one to go down.
+c. I saw the period to be 1.04ms, not that significant of a reduction
+d. The update interval is now (2.136ms - 1.032ms) one less function call is probably not that much, but I guess stack stuff

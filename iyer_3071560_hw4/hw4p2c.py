@@ -15,4 +15,4 @@ t0 = perf_counter()
 
 while True:
     t = perf_counter() - t0
-    setV(dac, lut[int(100 * (w * (t % (2 * np.pi))))] + 1)
+    setV(dac, lut[int(100 * (w * t)) % len(lut)] + 1)
