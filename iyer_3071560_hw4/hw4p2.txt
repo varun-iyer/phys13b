@@ -1,4 +1,4 @@
-The DAC updates the voltage every 1.08ms.
-b. I saw the delay actually go down to 480 microseconds, but if there were many more processes running you would probably expect the rate of this one to go down.
-c. I saw the period to be 1.04ms, not that significant of a reduction
-d. The update interval is now (2.136ms - 1.032ms) one less function call is probably not that much, but I guess stack stuff
+a. The DAC updates the voltage every 1.08ms. The code is in `hw4p2a.py`.
+b. I saw the delay actually go down to 480 microseconds with three videos playing. I have a hypothesis as to why we see this decrease, which seems contrary to our intuitions that more processes = less resources = higher latency. In order to make IO processes (like dialout processes and UI processes) more responsive, the Linux scheduler prioritizes them over processor-only processes and gives them longer contiguous periods of execution rather than many smaller periods. It’s possible that these measurements were made during a contiguous period, resulting in a perceived decrease of DAC latency.
+c. I saw the period to be 1.04ms, not a significant reduction; I suspect that I2C IO is the limiting computation, and not the `sin` calculation. The code is in `hw4p2c.py`.
+d. The update interval is now 1.104. I hypothesize that I2C is really the limiting factor, and not the additional function call.
