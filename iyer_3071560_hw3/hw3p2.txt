@@ -1,2 +1,5 @@
-
-c. V_{out} = 3.119V, 0.159V less than the 3.278V produced by the ADC, as measured by a multimeter.
+a.The nominal RC time constant is 470 kOhms * 1 uF = .47 seconds.
+	The measured constant is different depending on the fit used. When I fit using a V_in of 2V, I get .4719 seconds, a .3 percent error. However, when I fit it to the actual maximum voltage across the capacitor (~1.9 V), I get an RC constant of 0.372 seconds. It’s likely that the fit to the nominal maximum voltage gives a better approximation of the time constant, and that the capacitor does not reach this voltage (as theoretically expected) because of capacitor insulation resistance or other effects.
+	The code is included in rcplot.py. The image of the fit to the nominal V_in is in rc_2V.png, and the image of the fit maximum is included in rc_fit.png.
+b. V_{out} = 3.119V, 0.159V less than the 3.278V produced by the DAC, as measured by a multimeter.
+The input impedance of the ADC is 15 MOhms and the insulation resistance of the capacitor is greater than 1000 MOhms. The ADC and the capacitor are in parallel, so the net resistance is given by Rpar = 1 / (1/R_c + 1/R_adc) = 14.778 MOhms. The higher the net resistance, the less current flows through the circuit, and the closer the measured voltage will be to the theoretical maximum voltage. Without the ADC impedance, the capacitor’s resistance would be 1000MOhm, resulting in a negligible flow of current, whereas the ADC’s current draw is much more significant.
