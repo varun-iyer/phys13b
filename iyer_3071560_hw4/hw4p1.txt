@@ -1,10 +1,13 @@
 a. The op amp voltage is very close to if not the same as the DAC output.
-+---------+--------+--------+--------+
-| Pin 1   |  Vout  |  Vres  |  Ires  |
-+---------+--------+--------+--------+
-| 0.0040  | 0.0040 | 0.0000 | 0.0000 |
-| 1.0940  | 1.0940 | 0.0000 | 0.0000 |
-| 2.1900  | 1.8900 | 0.3000 | 0.0300 |
-| 3.2660  | 2.0000 | 1.2660 | 0.1266 |
-+---------+--------+--------+--------+
-d. I can see the faintest glimmer of light on the red LED at 1.56V, with the op-amp pin1 at 1.592 and the op-amp vout at 1.59. On the blue LED, I see it at 2.44V, with pin1 at 2.43 and vout at 2.428
++---------+---------+--------+--------+--------+
+| DAC out | Pin 1   |  Vout  |  Vres  |  Ires  |
++---------+---------+--------+--------+--------+
+| 0.0000  | 0.0040  | 0.0040 | 0.0000 | 0.0000 |
+| 1.1000  | 1.0940  | 1.0940 | 0.0000 | 0.0000 |
+| 2.2000  | 2.1900  | 1.8900 | 0.3000 | 0.0300 |
+| 3.3000  | 3.2660  | 2.0000 | 1.2660 | 0.1266 |
++---------+---------+--------+--------+--------+
+b. `hw4p1b_data.py` contains code which captures and saves data in the manner prescribed by the question. `hw4p1b_plot.py` contains code which plots and saves the data. `red_led.txt` and `blue_led.txt` contains the data itself. `blue_led.eps` and `red_led.eps` contain the plots of the data. It is a good idea to use two voltage readings to determine the current because the impedance of the LED will likely change with the voltage across it and/or the current going through it. One measurement takes the voltage across the resistor (which has a constant resistance of 98 Ohms), giving us a good measurement of the current, and the other measurement gives us the voltage across the LED.
+c. The maximum output of the DAC is equal to the Vdd; for the purposes of this question, I will assume that the Vdd=3.3V, although the Raspberry Pi could power it with 5V. At this voltage, the ADC will draw 3.3V/4.3MOhms = 7.67e-7 Amps. The voltage across the resistor at maximum DAC output is 1.2660 V. The input impedance of the ADC has a negligible effect on the measurement. At 3.3V, the resistor has (1.2660V / 98 Ohms = 0.0129A) going through it. Based on Kirchoff’s rules, if the voltmeter connected in parallel was not there, there would be (1.2660V / 4.3MOhms = 2.944e-7 A) more current through it, resulting in a change in voltage of (98 Ohms * 2.944e-7 A = 2.885e-5 V), a difference in voltage far lesser than the precision of the ADC.
+d. The program is available at `hw4p1d.py`. I can see the faintest glimmer of light at a DAC output of 1.56V, with a Pin1 reading of 1.592V, a Vout reading of 1.590, and a corresponding LED current of 2.04e-5 A.
+e. See `blue_led.eps` for the graph. The graph appears to have an asymptote at ~2.6 V, whereas the red led had an asymptote at ~2.1V. For the test conducted in part d, I see a glimmer of light at DAC=2.44V, Pin1=2.430V, Vout=2.428V, with the same LED current of 2.04e-5 A. The blue LED requires a greater voltage to operate than the red LED, but appears to draw similar amounts of current, indicating that its internal resistance is likely greater.

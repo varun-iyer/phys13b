@@ -23,4 +23,8 @@ for i, d in enumerate(dacv):
 	vout[i] = adc.readADCDifferential23(4096, 128) * 0.001
 
 dpv = np.vstack((dacv, pin1, vout))
-np.save(sys.argv[1], dpv)
+try:
+    np.savetxt(sys.argv[1], dpv)
+    print("Data saved to {}.".format(sys.argv[1]))
+except IndexError:
+    print("Usage: python3 hw4p1b_data.py /path/to/save/data.txt")
