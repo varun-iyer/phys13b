@@ -1,0 +1,6 @@
+a. The heater has a low resistance so that a lot of current can flow through it, delivering a great deal of power in the form of heat. In order to produce 10W of heating, you would have to apply sqrt(10 * 3.6) = 6.0 volts (from P = V^2/R). For a 100kOhm resistor, you would have to apply sqrt(10 * 100000) = 1000 volts.
+b. The nominal resistance at 25 C is 100 * 10 ** 3 = 100 kOhms. The resistance at 22 C would be higher; 1.152 * 100 kOhms = 115.2 kOhms, according to Curve 4.
+c. First, I use the voltage across the resistor (Vout, or the differential measurement across A2 and A3) and divie it by its known resistance of 100 kOhms to get the current. Then, I get the voltage across the thermistor (Vout - Vin) and divide by that current to identify its resistance. I get a reading of 111267 Ohms.
+d. Power = V^2/R = 2.716e-05 J
+e.
+f. See p2f_hw6.tex and p2f_hw6.pdf.

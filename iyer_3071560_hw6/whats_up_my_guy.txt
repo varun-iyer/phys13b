@@ -1,0 +1,9 @@
+p1a_hw6_300hz.eps
+p1a_hw6_500hz.eps
+p1a_hw6.py
+p1b_hw6.eps
+p1c_hw6.eps
+p1c_hw6.py
+p1_hw6.txt
+p2_hw6.txt
+whats_up_my_guy.txt

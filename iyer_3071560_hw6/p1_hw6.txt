@@ -1,0 +1,5 @@
+a. The sample for the second plot at 500 Hz samples a peak of the 920 Hz plot every six samples. This means that its own period has been measured to be six times greater than the 920 Hz plot, a measured frequency of 306.666 Hz.
+b. The ADC-measured period of the signal was 253.327, as compared to 256.2 Hz displayed by the wave generator and 255.1 Hz measured by the oscilloscope.
+The measured percent error is 0.695%.
+The data rate (and therefore conversion rate) variation of the ADS can be up to 10% which might lead to small phase errors due to mistaken time sampling. We see this is 'steps' of constant measured voltage in the graph. However, this effect is minute when averaged over a large number of phases. The more likely source of this very small percentage error is lack of adequate precision in human examination of the data and interpolation error in estimating zero-crossings in data which does not explicitly contain any. As all these effects or relatively small, we would expect the final error to be as well, which it is.
+c. The f_mod of the ADC is 250 kHz. The response seems to be pretty linear throughout.

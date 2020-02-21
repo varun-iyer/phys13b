@@ -1,0 +1,16 @@
+\documentclass{article}
+\usepackage{amsmath}
+\title{Solution of Resistance-Temperature Relationship}
+\author{Varun Iyer}
+\begin{document}
+\maketitle
+\begin{align}
+	T_1 &:= T - T_0 \\
+	R_0 &:= R(T_0)\\
+	R &= R_0 \exp (\alpha T_1 + \beta T_1 ^2)\\
+	\ln \tfrac{R}{R_0} &= \alpha T_1 + \beta T_1 ^2\\
+	0 &= \beta T_1 ^2 + \alpha T_1 + \ln \tfrac{R}{R_0} \\
+	T_1 &= \dfrac{-\alpha \pm \sqrt{\alpha ^2 + 4 \beta \ln \tfrac{R}{R_0}}}{2\beta} \\
+	T &= \boxed{\dfrac{-\alpha \pm \sqrt{\alpha ^2 + 4 \beta \ln \tfrac{R}{R_0}}}{2\beta} + T_0}
+\end{align}
+\end{document}
