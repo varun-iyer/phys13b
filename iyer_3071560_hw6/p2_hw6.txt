@@ -4,3 +4,4 @@ c. First, I use the voltage across the resistor (Vout, or the differential measu
 d. Power = V^2/R = 2.716e-05 J
 e.
 f. See p2f_hw6.tex and p2f_hw6.pdf.
+g. The program is present with nominal values.
