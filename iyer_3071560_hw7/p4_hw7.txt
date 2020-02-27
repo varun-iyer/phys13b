@@ -1,0 +1,3 @@
+a. The heater has a resistance of 3.6 Ohms and a voltage of 11.63V. The current through the heater is equal to V/R, or 3.23A. The power being dissapated is equal to IV, or 3.571 W.
+b. Measuring from the low heater terminal to the low capacitor termimnal, the voltage is 1.7V. Assuming LED current is negligible, the current through the MOSFET must be 3.23A * 0.310V = 1.00W. This seems ridiculous to me, but appears consistent with normal operation based on the datasheet.
+c & d: See plots and programs

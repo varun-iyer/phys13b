@@ -1,0 +1,4 @@
+a. The oscilloscope measures somewhat above 1.5 volts with sharp up and down spikes every ~500 microseconds.
+b. The steady voltage increases to about 2V at 10 percent; the spikes remain. At 100, the voltage jumps to a steady, near 3V, with no spikes.
+c. The capacitor stabilizes the line and removes the intermittent spikes.
+d. Impedance = 1/wC = 1/(2 * pi * f * C) = 13.39689 Ohms.

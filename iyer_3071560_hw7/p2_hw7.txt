@@ -1,0 +1,1 @@
+The maximum Gate-Source voltage is +/- 16V. The maximum value of OUT B is 12V - 0.025; the gate is effectiely a capacitor so it will have the same voltage after a few time constants, so we can ignore the resistor voltage drop. The G-S voltage will then be 11.975V.
