@@ -9,7 +9,7 @@ a = -0.048
 b = 0.0001
 T0 = 23.265 + 273.15
 R0 =  107682.260
-SAFETY = 317
+SAFETY = 350
 
 setpoint = 0
 try:
@@ -30,49 +30,57 @@ def get_temp():
         set_duty(0)
         print("DANGEROUS TEMPERATURE READING; SHUTTING OFF")
         sys.exit(0)
+    return temp
 
  
-def test_duty(duty, cycles=3):
+def test_duty(duty, deltat=30):
     """ Finds max oscillations for a given duty cycle """
+    print("Testing {}".format(duty))
     set_duty(1)
     while get_temp() < setpoint:
         pass
     set_duty(0)
     while get_temp() > setpoint:
         pass
-
+    print("Starting oscillation.")
     oscillations = 0
     temperatures = []
-    while oscillations < cycles:
+    tee = time.time()
+    set_duty(duty)
+    while tee + deltat > time.time():
         temp = get_temp()
         temperatures.append(temp)
         if temp < setpoint:
             set_duty(duty)
-            oscillations += 1
         else:
             set_duty(0)
     t = np.array(temperatures)
     t -= setpoint
     max_ = np.max(np.abs(t))
-    print("Tested {} with osc {}".format(duty, max_)
+    print("Tested {} with osc {}".format(duty, max_))
+    plt.scatter(*zip(*enumerate(temperatures)))
+    plt.show()
+    return max_
 
-points = [0, 1]
-while True:
-    # binary search for the best duty cycle
-    midpoint = np.mean([0, 1])
-    lowtest = np.mean([points[0], midpoint])
-    hightest = np.mean([points[1], midpoint])
-    low_osc = test_duty(lowtest)
-    high_osc = test_duty(hightest)
-    osc = 0
-    if low_osc <= high_osc:
-        points = [points[0], midpoint]
-        osc = low_osc
-    else:
-        points = [midpoint, points[1]]
-        osc = high_osc
-    print("Range {} with oscillation {} Celsius".format(points, osc))
+points = [0.0078125, 0.01171875]
+try:
+    while True:
+        # binary search for the best duty cycle
+        midpoint = np.mean(points)
+        lowtest = np.mean([points[0], midpoint])
+        hightest = np.mean([points[1], midpoint])
+        low_osc = test_duty(lowtest)
+        high_osc = test_duty(hightest)
+        osc = 0
+        if low_osc <= high_osc:
+            points = [points[0], midpoint]
+            osc = low_osc
+        else:
+            points = [midpoint, points[1]]
+            osc = high_osc
+        print("Range {} with oscillation {} Celsius".format(points, osc))
 
 except KeyboardInterrupt:
     set_duty(0)
+    print("Duty set to 0. Exiting.")
     sys.exit()

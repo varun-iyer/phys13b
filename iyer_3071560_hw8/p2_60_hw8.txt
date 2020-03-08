@@ -1,0 +1,16 @@
+Testing 0.1015625
+Starting oscillation.
+Tested 0.1015625 with osc 0.5801949244151956
+Testing 0.1171875
+Starting oscillation.
+Tested 0.1171875 with osc 0.4969507587496764
+Range [0.109375, 0.125] with oscillation 0.4969507587496764 Celsius
+Testing 0.11328125
+Starting oscillation.
+Tested 0.11328125 with osc 0.29330799533943264
+Testing 0.12109375
+Starting oscillation.
+Tested 0.12109375 with osc 0.37720498785506607
+Range [0.109375, 0.1171875] with oscillation 0.29330799533943264 Celsius
+Testing 0.111328125
+Starting oscillation.

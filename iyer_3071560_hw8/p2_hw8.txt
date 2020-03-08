@@ -1,0 +1,6 @@
+a. The oscillations at 35C, 100% duty were at about 2.7 Celsius. At 3% duty, the oscillations were about 0.1 Celsius.
+b. The highest attaiable temperature at 3% duty was 321.7 K.
+c. I created a binary "search" program to identify the duty cycles which minimize oscillations for 30 and 60 Celsius. The program reaches a temperature with a duty cycle of 100% and waits for the block to return to the setpoint. Then, it attempts to hold it at the setpoint with a given duty cycle and identifies the maximum deviation (positive or negative) as it does so. It also plots the data taken for each setpoint so that I can visually verify that it is operating as expected.
+Based upon the program, I found that the most effective duty cycle for 30 C was 0.8%, and the most effective cycle for 60 C was 11%.
+With these duty cycles, the maximum oscillation at 60 degrees was about 0.293 Celsius, and the maximum oscillation at 30 degrees was about 0.084 Celsius.
+As this difference is pretty substantial, instead of using a uniform setpoint to achieve mediocre results across the board, I will use a linear interpolation between these points to use as duty cycles in the future problems.

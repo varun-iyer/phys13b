@@ -1,0 +1,11 @@
+Temperature minima	RTD minima
+86.93			89.90
+132.24			135.25
+175.30			177.50
+219.99			223.02
+265.35			267.63
+
+Avg phase difference:
+2.73 seconds
+
+I used the program in p4_spike_hw8.py. This program waits meets a set point, "spikes" the temperature with 1 second of 0.5 power, and then cuts power until it cools to the set point. This creates a bounce with visible, obvious transitions. This makes the minima more apparent than a bang-bang maintaining a particular temperature. I plotted and visually identified each of the minima and subtracted and averaged them to find the phase difference.

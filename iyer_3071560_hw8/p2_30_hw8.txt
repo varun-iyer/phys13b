@@ -1,0 +1,23 @@
+Starting oscillation.
+Tested 0.01171875 with osc 0.0844438527069542
+Range [0.0078125, 0.015625] with oscillation 0.0844438527069542 Celsius
+Testing 0.009765625
+Starting oscillation.
+Tested 0.009765625 with osc 0.0844438527069542
+Testing 0.013671875
+Starting oscillation.
+Tested 0.013671875 with osc 0.0844438527069542
+Range [0.0078125, 0.01171875] with oscillation 0.0844438527069542 Celsius
+Testing 0.0087890625
+Starting oscillation.
+Tested 0.0087890625 with osc 0.0844438527069542
+Testing 0.0107421875
+ting 0.0087890625
+Starting oscillation.
+Tested 0.0087890625 with osc 0.0844438527069542
+Testing 0.0107421875
+Starting oscillation.
+Tested 0.0107421875 with osc 0.0844438527069542
+Range [0.0078125, 0.009765625] with oscillation 0.0844438527069542 Celsius
+Testing 0.00830078125
+

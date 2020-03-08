@@ -1,0 +1,2 @@
+a. The room temperature is 23.67119 degrees Celsius.
+b. The measured resistance is 109529.86 Ohms. 
