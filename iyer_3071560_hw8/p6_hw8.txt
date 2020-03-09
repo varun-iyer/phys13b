@@ -1,0 +1,4 @@
+I found:
+	alpha = -0.0581123
+	beta = 0.00022339
+	using an R0 of 109529.86 and a T0 of 23.67119 C.

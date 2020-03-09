@@ -1,0 +1,1 @@
+The proportional controller was pretty good; it rarely devated more than 0.25 C away from the setpoint.
