@@ -19,12 +19,13 @@ except:
 
 Kp = 0.05
 P0 = 0.02
-def duty(target, current):
-    if current > target:
-        return 0
-    d = min(Kp * (target - current) + P0, 1)
-    d = max(Kp * (target - current) + P0, 0)
-    return d
+Ti = 100
+Td = 0
+def duty(p, i, d):
+    d = P0 + Kp * (p + (1/Ti) * i + Td * d)
+    d = min(d, 1)
+    d = max(d, 0)
+    return min(1, max(d, 0))
 
 
 BOXT = 1 # boxcar time interval in seconds
@@ -33,7 +34,13 @@ kque = deque()
 
 
 def control():
+
     last = 0
+
+    integral = 0
+    tque.append(time.time())
+    kque.append(heat.get())
+
     while True:
         tque.append(time.time())
         kque.append(heat.get())
@@ -42,8 +49,11 @@ def control():
             cplt.add(tque[-1], kque[-1])
             last = tque[-1]
 
-        mtemp = sum(list(kque)) / len(kque)
-        set_duty(duty(setpoint, mtemp))
+        mtemp = tque[-1] # sum(list(kque)) / len(kque)
+        dt = tque[-1] - tque[-2]
+        derivative = (kque[-1] - kque[-2]) / dt
+        integral += (setpoint - tque[-1])  * dt
+        set_duty(duty(setpoint - mtemp, integral, derivative))
 
         while tque[0] + BOXT < tque[-1]:
             tque.popleft()

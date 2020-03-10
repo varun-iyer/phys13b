@@ -31,7 +31,9 @@ def draw(i, t, k):
     plt.xlabel("Time (s)")
     plt.ylabel("Temperature (K)")
     ax.set_xlim([-PLOT_TIME, 0])
-    a = ax.plot(np.array(list(t)) - t[-1], list(k))
+    a = None
+    if t and k:
+        a = ax.plot(np.array(list(t)) - t[-1], list(k))
     qmtx.release()
     return a
 
