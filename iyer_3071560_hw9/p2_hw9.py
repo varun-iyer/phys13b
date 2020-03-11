@@ -1,4 +1,4 @@
-from threading import Thread
+import _thread as thread
 import sys
 import atexit
 from collections import deque
@@ -6,12 +6,12 @@ import time
 import numpy as np
 import heat
 from pwm import set_duty
-import cplt
+# import cplt
 
 atexit.register(set_duty, 0)
 
 # really good:0.07
-Kpc = -0.1
+Kpc = - 0.1
 Tc = 32
 Kp = Kpc * 0.6
 Ti = Tc/2
@@ -47,7 +47,7 @@ plot_t = []
 plot_k = []
 
 
-def control(alg, name, acqtime=0, target=318):
+def control(alg, name, acqtime=600, target=318):
 
     last = 0
 
@@ -55,23 +55,25 @@ def control(alg, name, acqtime=0, target=318):
     t0 = time.time()
     tque.append(time.time())
     kque.append(heat.get())
+    dque.append(0)
 
-    while acqtime==0 or t0 > tque[-1] - acqtime:
+    while t0 > tque[-1] - acqtime:
         tque.append(time.time())
         kque.append(heat.get())
         plot_t.append(tque[-1])
         plot_k.append(kque[-1])
 
-        if tque[-1] > last + 1:
-            cplt.add(tque[-1], kque[-1])
-            last = tque[-1]
+        # if tque[-1] > last + 1:
+            # cplt.add(tque[-1], kque[-1])
+            # last = tque[-1]
 
         mtemp = kque[-1] # sum(list(kque)) / len(kque)
         dt = tque[-1] - tque[-2]
-        dque.append((kque[-1] - kque[-2]) / dt)
+        derivative = (kque[-1] - kque[-2]) / dt
+        dque.append(derivative)
         derivative = sum(list(dque)) / len(dque)
         integral += (kque[-1] - target)  * dt
-        integral = max(min(integral, 60), -60)
+        integral = max(min(integral, 20), -20)
         set_duty(alg(mtemp - target, integral, derivative))
 
         while tque[0] + BOXT < tque[-1]:
@@ -79,6 +81,28 @@ def control(alg, name, acqtime=0, target=318):
             kque.popleft()
     np.savetxt(name, np.vstack((plot_t, plot_k))) 
 
-thd = Thread(target=control, args=(pid, "p2a_pid_hw9.txt"))
-thd.start()
-cplt.run()
+# control(pid, "p2a_pid_hw9.txt", acqtime=600)
+# print("Done with pid!")
+
+# control(pid, "p3b_pid45stab_hw9.txt", 60)
+# print("Stabilitzed to 45")
+# control(pid, "p3a_blow_hw9.txt", 500)
+# print("Done with blow!")
+
+# control(pid, "p3b_pid45stab_hw9.txt", 60)
+# print("Stabilitzed to 45")
+# control(pid, "p3b_pid45.5stab_hw9.txt", 300, target=318.5)
+# print("Done with PID step!")
+
+control(pi, "p3c_pi45stab_hw9.txt", 120)
+print("Stabilitzed to 45")
+control(pi, "p3c_pi45.5stab_hw9.txt", 300, target=318.5)
+print("Done with PIstep!")
+
+# control(pi_tune, "p3d_pitune45stab_hw9.txt", 60)
+# print("Stabilitzed to 45")
+# control(pi_tune, "p3d_pitune45.5stab_hw9.txt", 300, target=318.5)
+# print("Done with PIstep!")
+
+# control(pi_tune, "p3e_piblow_hw9.txt", 600)
+# print("Done with PIstep!")

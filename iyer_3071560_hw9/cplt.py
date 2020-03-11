@@ -16,25 +16,26 @@ kque = deque()
 qmtx = Lock()
 
 def add(time, temperature):
-    qmtx.acquire(blocking=False)
+    q = qmtx.acquire(blocking=False)
     tque.append(time)
     kque.append(temperature)
     while tque[0] + PLOT_TIME < tque[-1]:
-        qmtx.acquire(blocking=False)
         tque.popleft()
         kque.popleft()
-    qmtx.release()
+    if q:
+        qmtx.release()
 
 def draw(i, t, k):
     ax.clear()
-    qmtx.acquire(blocking=False)
+    q = qmtx.acquire(blocking=False)
     plt.xlabel("Time (s)")
     plt.ylabel("Temperature (K)")
     ax.set_xlim([-PLOT_TIME, 0])
     a = None
     if t and k:
         a = ax.plot(np.array(list(t)) - t[-1], list(k))
-    qmtx.release()
+    if q:
+        qmtx.release()
     return a
 
 def run():
