@@ -1,0 +1,15 @@
+a. See p3a_hw9.eps. It takes about 100 seconds for the controller to restabilize
+to its usual +/- 0.2K deviations. I consider it to be stabilized when it doesn’t
+frequently deviate beyond 0.2K, and I say about because it’s hard to say exactly
+when the decline begins.
+b. See p3b_hw9.eps. It takes about 150 seconds to restabilize.
+c. See p3c_hw9.eps. It took about 213 seconds for the controller to stabilize.
+However, it stabilizes within +/- 0.15K instead of 0.2K.
+d. See p3d_hw9.eps. It took about 52 seconds to stabilize, which was
+surprisingly fast.
+e. It took about 85 seconds for the controller to restabilize, but I think my
+lung capacity was a little inconsistent between the two.
+
+The tuned PI controller (but not the untuned PI controller)actually performed
+better for recovery than the PID controller, but I think that speaks to the
+roughness of the Ziegler-Nichols constants more than anything else.

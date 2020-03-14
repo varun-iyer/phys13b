@@ -43,12 +43,11 @@ tque = deque()
 kque = deque()
 dque = deque()
 
-plot_t = []
-plot_k = []
 
 
 def control(alg, name, acqtime=600, target=318):
-
+    plot_t = []
+    plot_k = []
     last = 0
 
     integral = 0

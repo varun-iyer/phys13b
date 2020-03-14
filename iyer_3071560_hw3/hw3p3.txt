@@ -1,0 +1,14 @@
+a. According to the "SensitivIty per Volt vs. Vsupply" table on page four, the meter has a nominal sensitivity of 0.27 mV/Gauss/V at 3.3V and 25 Celsius, with a null value of Vdc/2 = 1.65.
+I measured the magnitude of the magnetic field at distances of 30 and 20 centimeters away from the sensor. These are visible on the plot; there are a set of steady values approximagely at 1.775V, and another set of steady values around 1.83V, representing 30 and 20cm distances respectively. These values for (supposedly) stable positions of the magnet fluctuate by as much as +/-0.02V, which will be our uncertainty for these readings. I believe that this uncertainty far outweighs the uncertainty of the positioning; the magnet was held in place by calipers.
+The sensitivity is (0.27 mV/Gauss/V) * 3.3V  = 0.1122 Tesla / V
+Given that Vdc = 3.3V,
+B_30 = 0.1122 * (1.775V - 1.65) = 0.0140 Tesla
+B_20 = 0.1122 * (1.83V - 1.65) = 0.0202 Tesla
+solving for u,
+u = B * 10 ** 7 * z ** 3 * 1/2
+For 30cm, we measure u to be
+u = 1890 Am^2
+For 20cm, 
+u = 808 Am^2.
+Given that I’m off by a factor of a about 8,000 at best estimate, I suspect that the greatest source of uncertainty is human calculation error. I have no idea what I’m doing wrong -- I triple checked each step of my calculations against the datasheet and the formulas, and I’m traveling at the moment so I can’t ask a TA. Please have mercy.
+b. Because the thickness = 3mm and the radius is 4mm, the volume of the magnet is (3e-3)(4e-3**2 * pi) = 1.507e-7 m^3. Multiply this times the magnetization of 1e6 A/m and we get that the nominal dipole moment is 0.1507 Am^2.

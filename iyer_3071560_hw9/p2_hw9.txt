@@ -1,0 +1,58 @@
+In retrospect, as I write this assignment several days after the closure of the
+lab, I should have saved the data I used to find Kpc. While I didn’t save this
+data, I’d also like to point out that the question doesn’t ask you to do so. In
+lieu of the data, however, I will offer an explanation of the process that I
+went through.
+I tried several different values of Kp to find Kpc. Last week, I found that a
+good constant for Kp was 0.05. However, this settles quickly and slightly below
+the setpoint, and does not produce the desired oscillations. I incremented Kp
+by 0.01 at a time (I happened to find that a very good constant for a prop.-only 
+controller was 0.07), but I did not see visible oscillation until 0.11, and then
+decreased it slightly to find dampened oscillation at 0.10. I measured the
+critical period between peaks to be 32 seconds by finding clear peaks with my
+cursor in a matplotlib window.
+I should also note that my Kp values are negative because all of my measurements
+are (target - current) and (current - previous), making my signs flipped from
+normal, according to Beaks.
+
+a. The plot is in p2a_pid_hw9.eps, and the data is in the corresponding .txt
+file. My temperature only remains within about 0.2 of the setpoint. I tried several
+different things to improve it, with little success. At first, Beaks informed
+me that it was likely to be a sign error with one of my terms. While my signs
+seemed correct to me at the time (e.g. if the temperature rapidly increases,
+the derivative constant is negative, so the duty cycle will decrease), I tried
+individually flipping the derivative and integral signs, only to see its
+performance worsen each time. I also tried wiggling my values of Kpc up and
+down by 0.1, and Tc up and down by 2 seconds, and failed to see any improvement
+in performance. I did not change the individual coefficients because I think the
+purpose of the assignment was to use the Ziegler-Nichols coefficient methods.
+So if I am doing something wrong, I haven’t the faintest clue what it is.
+
+b. I am calculating the RMS for the latter half of my data. I will use a
+rectangular approximation and multiply each temperature value by the succeeding
+time duration, square this multiple, sum all of the squares, square root, and
+divide by the length of time. Mathematically/Pythonically, this might be
+written as sqrt(sum(k[i] * (t[i+1] - t[i]) for i from 0 to len(data) - 1)/t_net)
+I did this in an interpreter as opposed to writing a program but here’s what 
+it looked like:
+>>> t, k = time[time>300], temperature[time > 300]
+>>> dt = t[1:] - t[:-1]
+>>> s = ((k[:-1]-318)**2) * dt
+>>> rms = np.sqrt(np.sum(s) / (t[-1] - t[0]))
+And the root mean squared error is equal to 0.09095 Kelvin.
+By average, I’m not sure if an absolute value average or a net average is meant.
+The net average of the error (calculated by sum(k[:-1] * dt)/(t[-1] - t[0]))
+is 0.002791 Kelvin, and the average of the absolute values of the error is
+0.71997.
+c. Calculated as shown above:
+	avg = 1.70786
+	abs_avg = 1.7125
+	rms = 1.96378
+The data is in the text file p2c_bang_hw9.txt
+d. Calculated as shown above:
+	avg: 0.024994
+	absavg: 0.061954
+	rms: 0.0827839
+The data is in the text file p2d_prop_hw9.txt
+The RMS is better. This is probably because the PID is bad, for reasons (or
+lack of thereof) noted above.

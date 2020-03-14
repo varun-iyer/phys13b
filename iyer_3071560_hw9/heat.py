@@ -10,9 +10,12 @@ T0 = 23.67119 + 273.15
 R0 =  109529.86
 SAFETY = 70+273.15
 
+class OnFireError(Exception):
+    pass
+
 def safe_exit():
     pwm.set_duty(0)
-    sys.exit()
+    raise OnFireError
 
 def get_rpt():
     vin = adc.readADCDifferential01(4096, 128)*0.001  # returns float

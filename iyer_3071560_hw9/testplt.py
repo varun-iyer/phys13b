@@ -2,5 +2,8 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import sys
-plt.plot(*np.loadtxt(sys.argv[1]))
+t, k = np.loadtxt(sys.argv[1])
+plt.plot(t-t[0], k)
+plt.xlabel("Time (s)")
+plt.ylabel("Temperature (K)")
 plt.show()

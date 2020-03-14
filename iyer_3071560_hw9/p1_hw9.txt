@@ -1,0 +1,16 @@
+Lemme tell ya, this code is impeccable.
+The first step is the `heat` and `pwm` libraries. They just package the ADC
+acquisition and temperature conversion bits into nice `get` functions and the
+PWM write and integer computation into nice `set` functions, neatly
+compartmentalized and separated from the brains of the controls.
+Within pwm, you have clamping functionality. I’ve also added another critical,
+nonrequired safety feature: and atexit signal which automatically sets the duty
+to 0 if the program exits for any reason (including Python errors). In addition,
+if 70C is exceeded on any read, the duty is set to 0 and the program exits with
+a custom-created OnFireError.
+Because integral clamping is part of the controls, that's done inside the
+control function within the main python programs.
+I’m particularly proud of my continuous plotting, which uses Matplotlib’s
+Animation module. In addition, graphics and controls update steps are not tied
+to each other and run on separate threads; controls can run as fast as it wants,
+and a mutex is used to protect the lists to which stored data is added.

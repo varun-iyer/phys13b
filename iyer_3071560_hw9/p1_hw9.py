@@ -48,7 +48,6 @@ plot_k = []
 
 
 def control(alg, name, acqtime=0, target=318):
-
     last = 0
 
     integral = 0

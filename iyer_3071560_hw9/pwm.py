@@ -10,6 +10,7 @@
 
 import os
 import sys
+import atexit
 from wpdir import wiringpi
 
 DELAY = 5   # delay in ms between duty cycle changes during ramp
@@ -62,3 +63,5 @@ def set_duty(duty):
     duty = max(duty, 0)
     duty_counts = int(duty*PWM_RANGE)
     wiringpi.pwmWrite(PWMPIN, duty_counts)  # Allowable values: 0 to PWM_RANGE
+
+atexit.register(set_duty, 0)
